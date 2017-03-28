@@ -16,7 +16,7 @@ class SignupForm extends React.Component {
             timezone: '',
             errors: {},
             isLoading: false,
-        }
+        };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -42,6 +42,7 @@ class SignupForm extends React.Component {
             this.setState({errors: {}, isLoading: true});
             this.props.userSignupRequest(this.state).then(
                 () => {
+                    this.props.history.push('/');
                 })
                 .catch(error => {
                     this.setState({errors: error.response.data, isLoading: false});
@@ -53,7 +54,7 @@ class SignupForm extends React.Component {
         const { errors } = this.state;
         const options = map(timezones, (val, key) =>
             <option key={val} value={val}>{key}</option>
-        )
+        );
         return (
             <form onSubmit={this.onSubmit}>
                 <h1>Join our community!</h1>
@@ -118,6 +119,6 @@ class SignupForm extends React.Component {
 
 SignupForm.propTypes = {
     userSignupRequest: React.PropTypes.func.isRequired
-}
+};
 
 export default SignupForm;
