@@ -3,10 +3,20 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
-    connection: {
-      filename: './reddice.sqlite3'
-    }
+      client: 'mysql',
+      connection: {
+          host : '127.0.0.1',
+          user : 'root',
+          password : 'shengliedu1',
+          database : 'reddice'
+      },
+      pool: {
+          min: 2,
+          max: 10
+      },
+      migrations: {
+          tableName: 'knex_migrations'
+      }
   },
 
   staging: {
