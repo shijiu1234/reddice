@@ -10,6 +10,9 @@ import App from './components/App';
 import Greetings from './components/Greetings';
 import SignupPage from './components/signup/SignupPage';
 import LoginPage from './components/login/LoginPage';
+import setAuthorizationToken from './utils/setAuthorizationToken';
+import jwt_decode from 'jwt-decode';
+import {setCurrentUser} from './actions/authActions';
 
 const store = createStore(
     rootReducer,
@@ -18,6 +21,10 @@ const store = createStore(
         window.devToolsExtension ? window.devToolsExtension() : f => f
     )
 );
+if(localStorage.jwtToken){
+    setAuthorizationToken(localStorage.jwtToken);
+    store.dispatch(setCurrentUser(jwt_decode(localStorage.jwtToken)));
+}
 
 render(
     <Provider store={store}>
