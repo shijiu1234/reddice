@@ -9,6 +9,7 @@ import rootReducer from './reducers';
 import App from './components/App';
 import Greetings from './components/Greetings';
 import SignupPage from './components/signup/SignupPage';
+import LoginPage from './components/login/LoginPage';
 
 const store = createStore(
     rootReducer,
@@ -25,6 +26,7 @@ render(
                 <Route path="/" component={App}/>
                 <Route exact path="/" component={Greetings}/>
                 <Route path="/signup" component={SignupPage}/>
+                <Route path="/login" component={LoginPage}/>
             </div>
         </Router>
     </Provider>
