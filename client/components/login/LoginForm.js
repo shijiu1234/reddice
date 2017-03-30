@@ -7,7 +7,7 @@ import {withRouter} from 'react-router';
 
 
 class LoginForm extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             identifier: '',
@@ -19,25 +19,24 @@ class LoginForm extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
-    isValid(){
+    isValid() {
         const {errors, isValid} = validateInput(this.state);
-        if(!isValid)
-            this.setState({ errors });
+        if (!isValid)
+            this.setState({errors});
         return isValid;
     }
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
-        if(this.isValid()){
-            this.setState({ errors: [], isLoading: true });
-            this.props.login(this.state).then(
-                (res)=> this.props.history.push('/'),
-                (err)=> this.setState({ errors:err.data.errors, isLoading:false })
-            );
+        if (this.isValid()) {
+            this.setState({errors: [], isLoading: true});
+            this.props.login(this.state)
+                .then((res) => this.props.history.push('/'))
+                .catch(err => this.setState({errors: err.response.data.errors, isLoading: false}));
         }
     }
 
-    onChange(e){
+    onChange(e) {
         this.setState({[e.target.name]: e.target.value});
     }
 
@@ -47,6 +46,8 @@ class LoginForm extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <h1>Login</h1>
+
+                {errors.form && <div className="alert alert-danger">{errors.form}</div>}
 
                 <TextFieldGroup
                     field="identifier"
