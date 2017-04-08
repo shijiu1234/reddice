@@ -24,7 +24,6 @@ class NavigationBar extends React.Component {
                 <li><Link to="/signup">Sign up</Link></li>
                 <li><Link to="/login">Login</Link></li>
             </ul>
-
         );
 
         return (
@@ -46,7 +45,6 @@ class NavigationBar extends React.Component {
 NavigationBar.propTypes = {
     auth: React.PropTypes.object.isRequired,
     logout: React.PropTypes.func.isRequired,
-    
 };
 
 function mapStateToProps(state) {

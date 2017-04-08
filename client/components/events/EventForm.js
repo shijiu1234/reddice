@@ -41,9 +41,8 @@ class EventForm extends React.Component {
                     onChange={this.onChange}
                 />
 
-                <div className="form-group">
-                    <button className="btn btn-primary btn-lg" disabled={isLoading}>Create</button>
-                </div>
+                <button type="submit" disabled={isLoading} className="btn btn-primary">Create</button>
+
             </form>
         )
     }
